@@ -8,7 +8,6 @@ from pymavlink import mavutil
 from pymavlink.dialects.v20.common import *
 
 
-
 class EdubotGCS:  # mavwifi.Wifi
     """Ground Command System (PC) class"""
 
@@ -440,7 +439,7 @@ class EdubotGCS:  # mavwifi.Wifi
         try:
             requests.get("http://10.1.100.6:31556/detect_object",
                         params={
-                            "object": f"{detect_code.replace(" ", "_")}",
+                            "object": f"{detect_code}",
                             "host": bot.ip.split(".")[3]
                         }).text
         except:
