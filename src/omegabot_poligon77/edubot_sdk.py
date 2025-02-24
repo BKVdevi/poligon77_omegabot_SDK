@@ -7,6 +7,8 @@ import requests
 from pymavlink import mavutil
 from pymavlink.dialects.v20.common import *
 
+from omegabot_poligon77.robot_class import Robot
+
 
 class EdubotGCS:  # mavwifi.Wifi
     """Ground Command System (PC) class"""
@@ -422,15 +424,57 @@ class EdubotGCS:  # mavwifi.Wifi
     def led_indication(self, collor = (255, 255, 255), timer = 2):
         self.led_custom(mode=2, color1=collor, timer=timer)
 
-    def detect(item):
-        pass    #Используйте функцию после распознавания метки, чтобы получить баллы
-                
+    def detect(bot: Robot, detect_code: str) -> None:
+        """
+        Функция вызывается, если вы за детектировали detect_code при сканировании или при доставке
 
-    def get_box():
-        pass
-                #Используйте функцию после распознавания метки, чтобы забрать груз и получить баллы
-                # **Использовать только после того как вызвали detect**
-        
-    def get_box():
-        pass
-                #Используйте функцию после того, как приехали на склад чтобы выложить груз и получить баллы
+        :param Robot: объект РТС
+        :type drone: Roobt
+
+        :param detect_code: Строка с расшифровкой aruco метки (Важно при распознавании aruco метки на выходе число,
+        его нужнно связать со строкой и передать в функцию)
+        :type detect_code: str
+
+        :rtype: None
+        """
+        print("detect_object(), ip: ", bot.ip.split(".")[3], "detect_code: ", detect_code)
+        try:
+            requests.get("http://10.1.100.6:31556/detect_object",
+                        params={
+                            "object": f"{detect_code.replace(" ", "_")}",
+                            "host": bot.ip.split(".")[3]
+                        }).text
+        except:
+            print("Геймкор выключен")
+
+    def get_box(bot: Robot) -> None:
+        """
+        Функция вызывается, если вы сели на qr код (для дрона доставщика)
+
+        :param bot: объект РТС
+        :type drone: Pion
+
+        :rtype: None
+        """
+        print("get_box(), ip: ", bot.ip.split(".")[3])
+        try:
+            requests.get("http://10.1.100.6:31556/get_box",
+                        params={"host": bot.ip.split(".")[3]}).text
+        except:
+            print("Геймкор выключен")
+
+    def drop_box(bot: Robot) -> None:
+        """
+        Функция вызывается, если вы сбрасываете груз
+
+        :param drone: объект РТС
+        :type drone: Robot
+
+        :rtype: None
+        """
+        print("drop_box(), ip: ", bot.ip.split(".")[3])
+        try:
+            requests.get("http://10.1.100.6:31556/drop_object",
+                        params={"host": bot.ip.split(".")[3]}).text
+        except:
+            print("Геймкор выключен")
