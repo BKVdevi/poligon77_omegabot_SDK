@@ -7,8 +7,6 @@ import requests
 from pymavlink import mavutil
 from pymavlink.dialects.v20.common import *
 
-from omegabot_poligon77.robot_class import Robot
-
 
 class EdubotGCS:  # mavwifi.Wifi
     """Ground Command System (PC) class"""
@@ -424,7 +422,7 @@ class EdubotGCS:  # mavwifi.Wifi
     def led_indication(self, collor = (255, 255, 255), timer = 2):
         self.led_custom(mode=2, color1=collor, timer=timer)
 
-    def detect(bot: Robot, detect_code: str) -> None:
+    def detect(bot, detect_code: str) -> None:
         """
         Функция вызывается, если вы за детектировали detect_code при сканировании или при доставке
 
@@ -447,7 +445,7 @@ class EdubotGCS:  # mavwifi.Wifi
         except:
             print("Геймкор выключен")
 
-    def get_box(bot: Robot) -> None:
+    def get_box(bot) -> None:
         """
         Функция вызывается, если вы сели на qr код (для дрона доставщика)
 
@@ -463,7 +461,7 @@ class EdubotGCS:  # mavwifi.Wifi
         except:
             print("Геймкор выключен")
 
-    def drop_box(bot: Robot) -> None:
+    def drop_box(bot) -> None:
         """
         Функция вызывается, если вы сбрасываете груз
 

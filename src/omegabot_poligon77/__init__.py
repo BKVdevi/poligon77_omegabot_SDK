@@ -1,2 +1,2 @@
-from omegabot_poligon77.robot_class import recalc_cords_to_points, recalc_points_to_cords, Robot
-import omegabot_poligon77.path as omegapath
+from .robot_class import recalc_cords_to_points, recalc_points_to_cords, Robot
+from .path import *

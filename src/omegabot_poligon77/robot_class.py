@@ -1,11 +1,6 @@
-try:
-    from edubot_sdk import EdubotGCS
-    from aruco_api_rpi import omegabot_aruco
-    import path as omegapath
-except:
-    from omegabot_poligon77.edubot_sdk import EdubotGCS
-    from omegabot_poligon77.aruco_api_rpi import omegabot_aruco
-    import omegabot_poligon77.path as omegapath
+from .edubot_sdk import EdubotGCS
+from .aruco_api_rpi import omegabot_aruco
+from .path import *
 
 def recalc_points_to_cords(point):
     return 5 - point*0.18
