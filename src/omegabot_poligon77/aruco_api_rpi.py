@@ -25,8 +25,8 @@ class omegabot_aruco:
 
     def bot_aruco_recog(self):
         # Подключение к видеостриму
-        try:
-            while True:
+        while True:
+            try:
                 self.cap = cv2.VideoCapture(self.input)
                 #self.cap = cv2.VideoCapture('output_recorded_aruco.avi')
                 #cap = cv2.VideoCapture('rtsp://10.1.100.42:8554/picam_h264')
@@ -97,8 +97,8 @@ class omegabot_aruco:
                         # Рисуем границы вокруг распознанных маркеров
                         #frame = aruco.drawDetectedMarkers(frame, corners, ids)
                         #cv2.imshow('Video Stream', frame)  # Отображение кадра
-        except:
-            print("Подулючаемся к стриму повторно")
+            except:
+                print("Подулючаемся к стриму повторно")
 
 
     #Функция проверки наличия маркера в поле зрения
