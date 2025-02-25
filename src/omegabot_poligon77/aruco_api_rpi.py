@@ -97,6 +97,7 @@ class omegabot_aruco:
                         # Рисуем границы вокруг распознанных маркеров
                         #frame = aruco.drawDetectedMarkers(frame, corners, ids)
                         #cv2.imshow('Video Stream', frame)  # Отображение кадра
+                        time.sleep(1/80)
             except:
                 print("Подулючаемся к стриму повторно")
 
